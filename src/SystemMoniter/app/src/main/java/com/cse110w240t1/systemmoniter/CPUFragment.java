@@ -28,7 +28,7 @@ public class CPUFragment extends ListFragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.gpu, container, false);
         String[] information = {"Architecture", "Make and Model", "Clock Speed", "Temperature", "Live Usage"};
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, information);
+        ArrayAdapter<String> adapter = new CustomAdapter(getActivity(), information);
         setListAdapter(adapter);
 
         return rootView;
