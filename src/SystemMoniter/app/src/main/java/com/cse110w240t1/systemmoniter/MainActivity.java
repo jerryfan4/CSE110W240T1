@@ -127,7 +127,7 @@ public class MainActivity extends AppCompatActivity {
                 case 3:
                     return "RAM";
                 case 4:
-                    return "OS";
+                    return "Operating System";
             }
             return null;
         }

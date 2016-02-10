@@ -30,7 +30,7 @@ class CustomAdapter extends ArrayAdapter<String> {
 
         title.setText(cellName);
         content.setText("Hello World");
-        image.setImageResource(R.drawable.default_icon);
+        image.setImageResource(R.drawable.ram_icon);
 
         return customView;
     }
