@@ -10,9 +10,14 @@ Week 5-6: milestone1
 		Saul: 		RAM
 
 	Week 5 thursday - friday: meeting to connect all the pages together and redistribute tasks
-	Week 6 entire week: work on functionality
-
-	Week 6-7:
+	Week 6-7: implement CPU information and operating system tabs; search for errors
+		Victor: 	CPU ussage coding
+		Jerry:		Operating systems usage coding
+		Ye:			Coordination with coding
+		Haijian:	Coordination with coding
+		Artin:		coordination with coding
+		Saul: 		Rest in Peace
+		
     Implement RAM usage
     Implement OS information
 
