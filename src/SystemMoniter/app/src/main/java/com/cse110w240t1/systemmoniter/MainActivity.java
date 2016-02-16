@@ -104,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
                 case 3:
                     return RAMFragment.newInstance(position + 1);
                 case 4:
-                    return OperatingSystemFragment.newInstance(position + 1);
+                    return SystemInfoFragment.newInstance(position + 1);
                 default:
                     return PlaceholderFragment.newInstance(position + 1);
             }
@@ -128,7 +128,7 @@ public class MainActivity extends AppCompatActivity {
                 case 3:
                     return "RAM";
                 case 4:
-                    return "Operating System";
+                    return "System Info";
             }
             return null;
         }

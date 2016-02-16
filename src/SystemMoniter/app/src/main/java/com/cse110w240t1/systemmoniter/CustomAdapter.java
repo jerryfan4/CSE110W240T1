@@ -33,31 +33,31 @@ class CustomAdapter extends ArrayAdapter<String> {
         content.setText("Hello World");
 
         if (cellName == "OS Version") {
-            content.setText(OperatingSystemFragment._OS_VERSION);
+            content.setText(SystemInfoFragment._OS_VERSION);
             image.setImageResource(R.drawable.default_icon);
         }
         if (cellName == "Security Patch") {
-            content.setText(OperatingSystemFragment._SECURITY_PATCH);
+            content.setText(SystemInfoFragment._SECURITY_PATCH);
             image.setImageResource(R.drawable.ram_icon);
         }
         if (cellName == "Phone Model") {
-            content.setText(OperatingSystemFragment._PHONE_MODEL);
+            content.setText(SystemInfoFragment._PHONE_MODEL);
             image.setImageResource(R.drawable.battery_icon);
         }
         if (cellName == "Manufacturer") {
-            content.setText(OperatingSystemFragment._MANUFACTURER);
+            content.setText(SystemInfoFragment._MANUFACTURER);
             image.setImageResource(R.drawable.gpu_icon);
         }
         if (cellName == "SIM Card Status") {
-            content.setText(OperatingSystemFragment._SIM_CARD);
+            content.setText(SystemInfoFragment._SIM_CARD);
             image.setImageResource(R.drawable.os_icon);
         }
         if (cellName == "Serial Number") {
-            content.setText(OperatingSystemFragment._SERIAL_NUMBER);
+            content.setText(SystemInfoFragment._SERIAL_NUMBER);
             image.setImageResource(R.drawable.default_icon);
         }
         if (cellName == "IMEI") {
-            content.setText(OperatingSystemFragment._IMEI);
+            content.setText(SystemInfoFragment._IMEI);
             image.setImageResource(R.drawable.ram_icon);
         }
 
