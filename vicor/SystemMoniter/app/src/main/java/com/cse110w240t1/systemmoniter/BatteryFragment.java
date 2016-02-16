@@ -12,9 +12,8 @@ import android.widget.ArrayAdapter;
  * Created by fanfan on 2/7/16.
  */
 public class BatteryFragment extends ListFragment {
-    public static String _EXTRA_LEVEL;
-    public static String _EXTRA_SCALE;
-    public static String _EXTRA_VOLTAGE;
+    public static String _BATTERY_PROPERTY_CURRENT_NOW;
+    public static String _BATTERY_PROPERTY_CAPACITY;
 
 
     public BatteryFragment() {
@@ -32,11 +31,10 @@ public class BatteryFragment extends ListFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.battery, container, false);
-        String[] information = {"Capacity", "Level", "Voltage"};
-        _EXTRA_LEVEL = BatteryManager.EXTRA_LEVEL;
-        _EXTRA_SCALE = BatteryManager.EXTRA_SCALE;
-        _EXTRA_VOLTAGE = BatteryManager.EXTRA_VOLTAGE;
+        String[] information = {"Capacity", "Current"};
 
+        _BATTERY_PROPERTY_CURRENT_NOW = ""+(BatteryManager.BATTERY_PROPERTY_CURRENT_NOW);
+        _BATTERY_PROPERTY_CAPACITY = ""+(BatteryManager.BATTERY_PROPERTY_CAPACITY);
 
         ArrayAdapter<String> adapter = new CustomAdapter(getActivity(), information);
         setListAdapter(adapter);

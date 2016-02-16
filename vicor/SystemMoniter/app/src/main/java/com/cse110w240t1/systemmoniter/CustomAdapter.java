@@ -61,13 +61,10 @@ class CustomAdapter extends ArrayAdapter<String> {
             image.setImageResource(R.drawable.ram_icon);
         }
         if (cellName == "Capacity") {
-            content.setText(BatteryFragment._EXTRA_SCALE);
+            content.setText(BatteryFragment._BATTERY_PROPERTY_CAPACITY);
             image.setImageResource(R.drawable.os_icon);
-        }if (cellName == "Level") {
-            content.setText(BatteryFragment._EXTRA_LEVEL);
-            image.setImageResource(R.drawable.battery_icon);
-        }if (cellName == "Voltage") {
-            content.setText(BatteryFragment._EXTRA_VOLTAGE);
+        }if (cellName == "Current") {
+            content.setText(BatteryFragment._BATTERY_PROPERTY_CURRENT_NOW);
             image.setImageResource(R.drawable.gpu_icon);
         }
 
