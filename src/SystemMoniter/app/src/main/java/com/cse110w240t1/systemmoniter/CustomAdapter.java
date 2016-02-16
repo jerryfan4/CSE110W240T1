@@ -35,7 +35,7 @@ class CustomAdapter extends ArrayAdapter<String> {
         if (cellName == "Security Patch") content.setText(OperatingSystemFragment._SECURITY_PATCH);
         if (cellName == "Phone Model") content.setText(OperatingSystemFragment._PHONE_MODEL);
         if (cellName == "Manufacturer") content.setText(OperatingSystemFragment._MANUFACTURER);
-        if (cellName == "SIM Cart Status") content.setText(OperatingSystemFragment._SIM_CARD);
+        if (cellName == "SIM Card Status") content.setText(OperatingSystemFragment._SIM_CARD);
         if (cellName == "Serial Number") content.setText(OperatingSystemFragment._SERIAL_NUMBER);
         if (cellName == "IMEI") content.setText(OperatingSystemFragment._IMEI);
 

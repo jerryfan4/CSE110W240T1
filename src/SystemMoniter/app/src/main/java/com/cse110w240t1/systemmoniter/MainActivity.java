@@ -105,8 +105,9 @@ public class MainActivity extends AppCompatActivity {
                     return RAMFragment.newInstance(position + 1);
                 case 4:
                     return OperatingSystemFragment.newInstance(position + 1);
+                default:
+                    return PlaceholderFragment.newInstance(position + 1);
             }
-            return PlaceholderFragment.newInstance(position + 1);
         }
 
         @Override
