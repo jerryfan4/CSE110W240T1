@@ -29,18 +29,54 @@ class CustomAdapter extends ArrayAdapter<String> {
         ImageView image = (ImageView) customView.findViewById(R.id.info_icon);
 
         title.setText(cellName);
-
-        content.setText("Hello World");
-        if (cellName == "OS Version") content.setText(OperatingSystemFragment._OS_VERSION);
-        if (cellName == "Security Patch") content.setText(OperatingSystemFragment._SECURITY_PATCH);
-        if (cellName == "Phone Model") content.setText(OperatingSystemFragment._PHONE_MODEL);
-        if (cellName == "Manufacturer") content.setText(OperatingSystemFragment._MANUFACTURER);
-        if (cellName == "SIM Card Status") content.setText(OperatingSystemFragment._SIM_CARD);
-        if (cellName == "Serial Number") content.setText(OperatingSystemFragment._SERIAL_NUMBER);
-        if (cellName == "IMEI") content.setText(OperatingSystemFragment._IMEI);
-
         image.setImageResource(R.drawable.ram_icon);
+        content.setText("Hello World");
 
+        if (cellName == "OS Version") {
+            content.setText(SystemInfoFragment._OS_VERSION);
+            image.setImageResource(R.drawable.default_icon);
+        }
+        if (cellName == "Security Patch") {
+            content.setText(SystemInfoFragment._SECURITY_PATCH);
+            image.setImageResource(R.drawable.ram_icon);
+        }
+        if (cellName == "Phone Model") {
+            content.setText(SystemInfoFragment._PHONE_MODEL);
+            image.setImageResource(R.drawable.battery_icon);
+        }
+        if (cellName == "Manufacturer") {
+            content.setText(SystemInfoFragment._MANUFACTURER);
+            image.setImageResource(R.drawable.gpu_icon);
+        }
+        if (cellName == "SIM Card Status") {
+            content.setText(SystemInfoFragment._SIM_CARD);
+            image.setImageResource(R.drawable.os_icon);
+        }
+        if (cellName == "Serial Number") {
+            content.setText(SystemInfoFragment._SERIAL_NUMBER);
+            image.setImageResource(R.drawable.default_icon);
+        }
+        if (cellName == "IMEI") {
+            content.setText(SystemInfoFragment._IMEI);
+            image.setImageResource(R.drawable.ram_icon);
+        }
+
+        if (cellName == "Percentage") {
+            content.setText(BatteryFragment._PERCENTAGE);
+            image.setImageResource(R.drawable.battery_icon);
+        }
+        if (cellName == "Voltage") {
+            content.setText(BatteryFragment._VOLTAGE);
+            image.setImageResource(R.drawable.default_icon);
+        }
+        if (cellName == "Battery Temperature") {
+            content.setText(BatteryFragment._TEMPERATURE);
+            image.setImageResource(R.drawable.os_icon);
+        }
+        if (cellName == "Technology") {
+            content.setText(BatteryFragment._TECHNOLOGY);
+            image.setImageResource(R.drawable.gpu_icon);
+        }
         return customView;
     }
 }
