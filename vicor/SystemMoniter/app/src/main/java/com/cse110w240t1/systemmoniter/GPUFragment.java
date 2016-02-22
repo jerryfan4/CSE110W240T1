@@ -12,7 +12,6 @@ import android.widget.ArrayAdapter;
  */
 public class GPUFragment extends ListFragment {
 
-
     public GPUFragment() {
     }
 
