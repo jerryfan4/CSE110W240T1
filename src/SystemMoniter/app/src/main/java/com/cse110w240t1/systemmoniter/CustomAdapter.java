@@ -61,6 +61,31 @@ class CustomAdapter extends ArrayAdapter<String> {
             image.setImageResource(R.drawable.ram_icon);
         }
 
+        if (cellName == "Percentage") {
+            content.setText(BatteryFragment._PERCENTAGE);
+            image.setImageResource(R.drawable.battery_icon);
+        }
+        if (cellName == "Voltage") {
+            content.setText(BatteryFragment._VOLTAGE);
+            image.setImageResource(R.drawable.default_icon);
+        }
+        if (cellName == "Battery Temperature") {
+            content.setText(BatteryFragment._TEMPERATURE);
+            image.setImageResource(R.drawable.os_icon);
+        }
+        if (cellName == "Technology") {
+            content.setText(BatteryFragment._TECHNOLOGY);
+            image.setImageResource(R.drawable.gpu_icon);
+        }
+
+        if (cellName == "Total Memory") {
+            content.setText(RAMFragment._TOTAL_MEMORY);
+            image.setImageResource(R.drawable.ram_icon);
+        }
+        if (cellName == "Available Memory") {
+            content.setText(RAMFragment._AVAILABLE_MEMORY);
+            image.setImageResource(R.drawable.os_icon);
+        }
         return customView;
     }
 }
