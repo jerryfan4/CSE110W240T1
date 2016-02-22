@@ -40,7 +40,11 @@ public class SystemInfoFragment extends ListFragment {
         View rootView = inflater.inflate(R.layout.system_info, container, false);
         String[] information = {"OS Version", "Security Patch", "Phone Model", "Manufacturer", "SIM Card Status", "Serial Number", "IMEI"};
         _OS_VERSION = Build.VERSION.RELEASE;
-        _SECURITY_PATCH = Build.VERSION.SECURITY_PATCH;
+        if (Build.VERSION.SDK_INT >= 22)
+            _SECURITY_PATCH = Build.VERSION.SECURITY_PATCH;
+        else
+            _SECURITY_PATCH = "Unavailable at the moment";
+
         _PHONE_MODEL = Build.MODEL;
         _MANUFACTURER = (Build.MANUFACTURER).toUpperCase();
         _SERIAL_NUMBER = Build.SERIAL;
