@@ -1,36 +1,66 @@
 package com.cse110w240t1.systemmoniter;
 
-import android.os.Bundle;
-import android.support.v4.app.ListFragment;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
+<pre name="code" class="java">package com.example.gpuinfo;
 
-/**
- * Created by fanfan on 2/7/16.
- */
-public class GPUFragment extends ListFragment {
+        import javax.microedition.khronos.egl.EGLConfig;
+        import javax.microedition.khronos.opengles.GL10;
+        import android.app.Activity;
+        import android.opengl.GLSurfaceView;
+        import android.os.Bundle;
+        import android.util.Log;
 
-    public GPUFragment() {
+public class OpenGlMainActivity extends Activity {
+
+    private GLSurfaceView mGLSurfaceView;
+
+    private class Renderer implements GLSurfaceView.Renderer {
+
+        public void onDrawFrame(GL10 gl) {
+        }
+
+        public void onSurfaceChanged(GL10 gl, int width, int height) {
+
+        }
+
+        public void onSurfaceCreated(GL10 gl, EGLConfig config) {
+
+            // render
+            Log.e( "GPUINFO", "GL_RENDERER:::::" + gl.glGetString( GL10.GL_RENDERER));
+            // make
+            Log.e( "GPUINFO", "GL_VENDOR::::: " + gl.glGetString( GL10.GL_VENDOR));
+            // version
+            Log.e( "GPUINFO", "GL_VERSION::::: " + gl.glGetString( GL10.GL_VERSION));
+        }
+
     }
 
-    public static GPUFragment newInstance(int sectionNumber) {
-        GPUFragment fragment = new GPUFragment();
-        Bundle args = new Bundle();
-        args.putInt("GPU_Fragment", sectionNumber);
-        fragment.setArguments(args);
-        return fragment;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate( savedInstanceState);
+
+        // Create our surface view and set it as the content of our
+        // Activity
+        mGLSurfaceView = new GLSurfaceView( this);
+        mGLSurfaceView.setRenderer( new Renderer());
+        setContentView( mGLSurfaceView);
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.cpu, container, false);
-        String[] information = {"Architecture", "Make and Model", "Clock Speed", "Temperature", "Live Usage"};
-        ArrayAdapter<String> adapter = new CustomAdapter(getActivity(), information);
-        setListAdapter(adapter);
-
-        return rootView;
+    protected void onResume() {
+        // Ideally a game should implement onResume() and onPause()
+        // to take appropriate action when the activity looses focus
+        super.onResume();
+        mGLSurfaceView.onResume();
     }
+
+    @Override
+    protected void onPause() {
+        // Ideally a game should implement onResume() and onPause()
+        // to take appropriate action when the activity looses focus
+        super.onPause();
+        mGLSurfaceView.onPause();
+    }
+
 }
+</pre><br><br>
