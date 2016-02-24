@@ -35,7 +35,7 @@ public class CPUFragment extends ListFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.gpu, container, false);
+        View rootView = inflater.inflate(R.layout.cpu, container, false);
         String[] information = {"CPU Architecture", "Make and Model", "Clock Speed", "Temperature", "CPU Load"};
         ArrayAdapter<String> adapter = new CustomAdapter(getActivity(), information);
         setListAdapter(adapter);
