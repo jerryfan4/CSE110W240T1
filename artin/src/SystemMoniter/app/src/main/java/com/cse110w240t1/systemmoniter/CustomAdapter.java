@@ -1,6 +1,7 @@
 package com.cse110w240t1.systemmoniter;
 
 import android.content.Context;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,12 +26,12 @@ class CustomAdapter extends ArrayAdapter<String> {
 
         String cellName = getItem(position);
         TextView title = (TextView) customView.findViewById(R.id.info_title);
-        TextView content = (TextView) customView.findViewById(R.id.info_content);
+        final TextView content = (TextView) customView.findViewById(R.id.info_content);
         ImageView image = (ImageView) customView.findViewById(R.id.info_icon);
 
         title.setText(cellName);
         image.setImageResource(R.drawable.ram_icon);
-        content.setText("Hello World");
+        content.setText("Loading...");
 
         if (cellName == "OS Version") {
             content.setText(SystemInfoFragment._OS_VERSION);
@@ -61,7 +62,6 @@ class CustomAdapter extends ArrayAdapter<String> {
             image.setImageResource(R.drawable.ram_icon);
         }
 
-<<<<<<< Updated upstream
         if (cellName == "Percentage") {
             content.setText(BatteryFragment._PERCENTAGE);
             image.setImageResource(R.drawable.battery_icon);
@@ -87,11 +87,44 @@ class CustomAdapter extends ArrayAdapter<String> {
             content.setText(RAMFragment._AVAILABLE_MEMORY);
             image.setImageResource(R.drawable.os_icon);
         }
-=======
-        if (cellName == "CPU Load")
 
+        if (cellName == "CPU Architecture") {
+            content.setText(CPUFragment._CPU_ARCHITECTURE);
+            image.setImageResource(R.drawable.os_icon);
+        }
 
->>>>>>> Stashed changes
+        if (cellName == "CPU Load") {
+            final Handler CPUUpdater = new Handler();
+            final int delay = 750;
+
+            CPUUpdater.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    content.setText(CPUFragment._CPU_USAGE);
+
+                    CPUUpdater.postDelayed(this, delay);
+                }
+            }, delay);
+
+            image.setImageResource(R.drawable.gpu_icon);
+        }
+
+        if (cellName == "GPU Load") {
+            final Handler GPUUpdater = new Handler();
+            final int delay = 750;
+
+            GPUUpdater.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    content.setText(GPUFragment._GPU_LIVE_USAGE);
+
+                    GPUUpdater.postDelayed(this, delay);
+                }
+            }, delay);
+
+            image.setImageResource(R.drawable.gpu_icon);
+        }
+        
         return customView;
     }
 }

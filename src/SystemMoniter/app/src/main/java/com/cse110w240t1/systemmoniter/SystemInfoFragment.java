@@ -13,6 +13,8 @@ import android.widget.ArrayAdapter;
 
 /**
  * Created by fanfan on 2/7/16.
+ *
+ * Edited by artc144 on 2/15/16.
  */
 public class SystemInfoFragment extends ListFragment {
     public static String _OS_VERSION;
@@ -39,6 +41,7 @@ public class SystemInfoFragment extends ListFragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.system_info, container, false);
         String[] information = {"OS Version", "Security Patch", "Phone Model", "Manufacturer", "SIM Card Status", "Serial Number", "IMEI"};
+
         _OS_VERSION = Build.VERSION.RELEASE;
         if (Build.VERSION.SDK_INT >= 22)
             _SECURITY_PATCH = Build.VERSION.SECURITY_PATCH;
@@ -48,9 +51,13 @@ public class SystemInfoFragment extends ListFragment {
         _PHONE_MODEL = Build.MODEL;
         _MANUFACTURER = (Build.MANUFACTURER).toUpperCase();
         _SERIAL_NUMBER = Build.SERIAL;
+
         TelephonyManager telephonyManager = (TelephonyManager) getContext().getSystemService(Context.TELEPHONY_SERVICE);
+
         _IMEI = telephonyManager.getDeviceId();
+
         int simStatus = telephonyManager.getSimState();
+
         switch (simStatus) {
             case TelephonyManager.SIM_STATE_ABSENT:
                 _SIM_CARD = "no SIM card is available in the device";
