@@ -35,7 +35,7 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Medium Text"
             android:id="@+id/info_content"
-            android:layout_marginLeft="40dp"
+            android:layout_marginLeft="10dp"
             android:textColor="#000000" />
 
     </LinearLayout>
