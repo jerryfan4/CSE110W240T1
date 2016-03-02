@@ -38,7 +38,7 @@ public class GPUFragment extends ListFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.gpu, container, false);
-        String[] information = {"Architecture", "Make and Model", "Clock Speed", "Temperature", "GPU Load"};
+        String[] information = {"GPU Architecture", "GPU Make and Model", "Clock Speed", "Temperature", "GPU Load"};
         ArrayAdapter<String> adapter = new CustomAdapter(getActivity(), information);
         setListAdapter(adapter);
 

@@ -33,9 +33,25 @@ class CustomAdapter extends ArrayAdapter<String> {
         image.setImageResource(R.drawable.default_icon);
         content.setText("Loading...");
 
+        if(cellName == "Make and Model"){
+            image.setImageResource(R.drawable.cpu_icon);
+        }
+        if(cellName == "Clock Speed"){
+            image.setImageResource(R.drawable.speed_icon);
+        }
+        if(cellName == "CPU Make and Model"){
+            image.setImageResource(R.drawable.cpu_icon);
+        }
+        if(cellName == "GPU Make and Model"){
+            image.setImageResource(R.drawable.gpu_icon);
+        }
+        if (cellName == "Temperature") {
+            content.setText(BatteryFragment._TEMPERATURE);
+            image.setImageResource(R.drawable.temperature_icon);
+        }
         if (cellName == "OS Version") {
             content.setText(SystemInfoFragment._OS_VERSION);
-            image.setImageResource(R.drawable.os_version_icon);
+            image.setImageResource(R.drawable.os_icon);
         }
         if (cellName == "Security Patch") {
             content.setText(SystemInfoFragment._SECURITY_PATCH);
@@ -47,7 +63,7 @@ class CustomAdapter extends ArrayAdapter<String> {
         }
         if (cellName == "Manufacturer") {
             content.setText(SystemInfoFragment._MANUFACTURER);
-            image.setImageResource(R.drawable.default_icon);
+            image.setImageResource(R.drawable.phone_model_icon);
         }
         if (cellName == "SIM Card Status") {
             content.setText(SystemInfoFragment._SIM_CARD);
@@ -72,11 +88,11 @@ class CustomAdapter extends ArrayAdapter<String> {
         }
         if (cellName == "Battery Temperature") {
             content.setText(BatteryFragment._TEMPERATURE);
-            image.setImageResource(R.drawable.default_icon);
+            image.setImageResource(R.drawable.temperature_icon);
         }
         if (cellName == "Technology") {
             content.setText(BatteryFragment._TECHNOLOGY);
-            image.setImageResource(R.drawable.default_icon);
+            image.setImageResource(R.drawable.technology_icon);
         }
 
         if (cellName == "Total Memory") {
@@ -90,7 +106,11 @@ class CustomAdapter extends ArrayAdapter<String> {
 
         if (cellName == "CPU Architecture") {
             content.setText(CPUFragment._CPU_ARCHITECTURE);
-            image.setImageResource(R.drawable.default_icon);
+            image.setImageResource(R.drawable.cpu_icon);
+        }
+        if (cellName == "GPU Architecture") {
+            content.setText(CPUFragment._CPU_ARCHITECTURE);
+            image.setImageResource(R.drawable.gpu_icon);
         }
 
         if (cellName == "CPU Load") {
@@ -106,7 +126,7 @@ class CustomAdapter extends ArrayAdapter<String> {
                 }
             }, delay);
 
-            image.setImageResource(R.drawable.default_icon);
+            image.setImageResource(R.drawable.load_icon);
         }
 
         if (cellName == "GPU Load") {
@@ -122,7 +142,7 @@ class CustomAdapter extends ArrayAdapter<String> {
                 }
             }, delay);
 
-            image.setImageResource(R.drawable.default_icon);
+            image.setImageResource(R.drawable.load_icon);
         }
         
         return customView;
