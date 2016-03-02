@@ -16,13 +16,13 @@
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/appbar_padding_top"
         android:theme="@style/AppTheme.AppBarOverlay"
-        android:background="#111111">
+        android:background="#3ba194">
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="#201f1f"
+            android:background="#3ba194"
             app:layout_scrollFlags="enterAlwaysCollapsed"
             app:popupTheme="@style/AppTheme.PopupOverlay">
 
@@ -32,6 +32,7 @@
             android:id="@+id/tabs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="#3eb0a2"
             app:tabMode="scrollable"/>
 
     </android.support.design.widget.AppBarLayout>

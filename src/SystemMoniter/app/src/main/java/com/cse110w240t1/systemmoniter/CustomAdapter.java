@@ -97,13 +97,16 @@ class CustomAdapter extends ArrayAdapter<String> {
 
         if (cellName == "Total Memory") {
             content.setText(RAMFragment._TOTAL_MEMORY);
-            image.setImageResource(R.drawable.total_memory_icon);
+            image.setImageResource(R.drawable.memory_icon);
         }
         if (cellName == "Available Memory") {
             content.setText(RAMFragment._AVAILABLE_MEMORY);
             image.setImageResource(R.drawable.available_memory_icon);
         }
-
+        if (cellName == "Current Using Memory") {
+            content.setText(RAMFragment._AVAILABLE_MEMORY);
+            image.setImageResource(R.drawable.using_memory_icon);
+        }
         if (cellName == "CPU Architecture") {
             content.setText(CPUFragment._CPU_ARCHITECTURE);
             image.setImageResource(R.drawable.cpu_icon);
