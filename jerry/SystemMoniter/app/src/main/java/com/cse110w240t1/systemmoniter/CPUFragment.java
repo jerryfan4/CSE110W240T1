@@ -58,7 +58,7 @@ public class CPUFragment extends ListFragment {
                 double cpu_load = 0;
                 int voltage = intent.getIntExtra(BatteryManager.EXTRA_VOLTAGE, -1);
                 String technology = intent.getExtras().getString(BatteryManager.EXTRA_TECHNOLOGY);
-                _CPU_LOAD = ;
+                _CPU_LOAD ="";
 
             }
         };

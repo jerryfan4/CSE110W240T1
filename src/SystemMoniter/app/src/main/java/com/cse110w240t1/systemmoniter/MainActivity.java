@@ -43,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
@@ -72,10 +73,11 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
+        /*
         if (id == R.id.action_settings) {
             return true;
         }
-
+        */
         return super.onOptionsItemSelected(item);
     }
 
@@ -104,6 +106,8 @@ public class MainActivity extends AppCompatActivity {
                 case 3:
                     return RAMFragment.newInstance(position + 1);
                 case 4:
+                    return RAMGraphFragment.newInstance(position + 1);
+                case 5:
                     return SystemInfoFragment.newInstance(position + 1);
                 default:
                     return PlaceholderFragment.newInstance(position + 1);
@@ -113,7 +117,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public int getCount() {
             // Show 5 total pages.
-            return 5;
+            return 6;
         }
 
         @Override
@@ -128,6 +132,8 @@ public class MainActivity extends AppCompatActivity {
                 case 3:
                     return "RAM";
                 case 4:
+                    return "RAM Graph";
+                case 5:
                     return "System Info";
             }
             return null;

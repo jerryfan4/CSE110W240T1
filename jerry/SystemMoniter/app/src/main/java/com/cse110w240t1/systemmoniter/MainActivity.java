@@ -105,6 +105,8 @@ public class MainActivity extends AppCompatActivity {
                     return RAMFragment.newInstance(position + 1);
                 case 4:
                     return SystemInfoFragment.newInstance(position + 1);
+                case 5:
+                    return RAMGraph.newInstance(position + 1);
                 default:
                     return PlaceholderFragment.newInstance(position + 1);
             }
@@ -113,7 +115,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public int getCount() {
             // Show 5 total pages.
-            return 5;
+            return 6;
         }
 
         @Override
@@ -129,6 +131,8 @@ public class MainActivity extends AppCompatActivity {
                     return "RAM";
                 case 4:
                     return "System Info";
+                case 5:
+                    return "Ram Graph";
             }
             return null;
         }

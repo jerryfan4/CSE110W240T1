@@ -104,7 +104,7 @@ class CustomAdapter extends ArrayAdapter<String> {
             image.setImageResource(R.drawable.available_memory_icon);
         }
         if (cellName == "Current Using Memory") {
-            content.setText(RAMFragment._AVAILABLE_MEMORY);
+            content.setText(RAMFragment._USING_MEMORY);
             image.setImageResource(R.drawable.using_memory_icon);
         }
         if (cellName == "CPU Architecture") {
@@ -119,7 +119,7 @@ class CustomAdapter extends ArrayAdapter<String> {
         if (cellName == "CPU Load") {
             final Handler CPUUpdater = new Handler();
             final int delay = 750;
-
+            /*
             CPUUpdater.postDelayed(new Runnable() {
                 @Override
                 public void run() {
@@ -128,14 +128,14 @@ class CustomAdapter extends ArrayAdapter<String> {
                     CPUUpdater.postDelayed(this, delay);
                 }
             }, delay);
-
+            */
             image.setImageResource(R.drawable.load_icon);
         }
 
         if (cellName == "GPU Load") {
             final Handler GPUUpdater = new Handler();
             final int delay = 750;
-
+            /*
             GPUUpdater.postDelayed(new Runnable() {
                 @Override
                 public void run() {
@@ -144,6 +144,7 @@ class CustomAdapter extends ArrayAdapter<String> {
                     GPUUpdater.postDelayed(this, delay);
                 }
             }, delay);
+            */
 
             image.setImageResource(R.drawable.load_icon);
         }
