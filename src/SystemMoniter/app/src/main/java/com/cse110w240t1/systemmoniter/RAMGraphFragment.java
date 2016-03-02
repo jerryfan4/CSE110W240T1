@@ -66,8 +66,8 @@ public class RAMGraphFragment extends Fragment {
         viewport.setXAxisBoundsManual(true);
         long Mem = (memoryInfo.totalMem - memoryInfo.availMem) / 1024 / 1024;
         viewport.setXAxisBoundsStatus(Viewport.AxisBoundsStatus.AUTO_ADJUSTED);
-        viewport.setMinY(Mem - 0.003 * Mem);
-        viewport.setMaxY(Mem + 0.003 * Mem);
+        viewport.setMinY(Mem - 0.005 * Mem);
+        viewport.setMaxY(Mem + 0.005 * Mem);
         //viewport.setScrollable(true);//couldn't play around this with my comp
         return rootView;
     }
