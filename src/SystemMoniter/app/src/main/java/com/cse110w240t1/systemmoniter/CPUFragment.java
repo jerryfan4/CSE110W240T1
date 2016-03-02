@@ -3,6 +3,7 @@ package com.cse110w240t1.systemmoniter;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,6 +21,9 @@ public class CPUFragment extends ListFragment {
 
     public static String _CPU_ARCHITECTURE;
     public static String _CPU_USAGE;
+    public static String _CPU_MAKE;
+    public static String _CPU_MODEL;
+    public static String _CPU_CLOCK_SPEED;
 
     public CPUFragment() {
     }
@@ -36,29 +40,42 @@ public class CPUFragment extends ListFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.cpu, container, false);
-        String[] information = {"CPU Architecture", "CPU Make and Model", "Clock Speed", "Temperature", "CPU Load"};
+        String[] information = {"CPU Architecture", "CPU Make", "CPU Model", "CPU Clock Speed", "CPU Load"};
         ArrayAdapter<String> adapter = new CustomAdapter(getActivity(), information);
         setListAdapter(adapter);
 
-        if (Build.VERSION.SDK_INT >= 21)
+        _CPU_CLOCK_SPEED = "400MHz - 2.10 GHz";
+        _CPU_MAKE = "Samsung Exynos Octa 7420";
+        _CPU_MODEL = "Cortex A-57, Cortex A-53";
+
+        if ( Build.VERSION.SDK_INT >= 21 ) {
             _CPU_ARCHITECTURE = Build.SUPPORTED_ABIS[0];
+        }
         else
-            _CPU_ARCHITECTURE = "Unavailable at the moment";
-        /*
-        _CPU_USAGE = getCpuUsage() + " %";
+        {
+            _CPU_ARCHITECTURE = Build.CPU_ABI;
+        }
 
-        final Handler CPUUpdater = new Handler();
-        final int delay = 750;
-
-        CPUUpdater.postDelayed(new Runnable() {
-            @Override
+        new Thread(new Runnable() {
             public void run() {
-                _CPU_USAGE = getCpuUsage() + " %";
+                Looper.prepare();
 
-                CPUUpdater.postDelayed(this, delay);
+                final Handler CPUUpdater = new Handler();
+                final int delay = 750;
+
+                CPUUpdater.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        _CPU_USAGE = getCpuUsage() + " %";
+
+                        CPUUpdater.postDelayed(this, delay);
+                    }
+                }, delay);
+
+                Looper.loop();
             }
-        }, delay);
-        */
+        }).start();
+
         return rootView;
     }
 
@@ -89,13 +106,13 @@ public class CPUFragment extends ListFragment {
 
             long idle2 = Long.parseLong(fields[4]);
             long cpuMeasure2 = Long.parseLong(fields[1]) + Long.parseLong(fields[2]) +
-                                Long.parseLong(fields[3]) + Long.parseLong(fields[5]) +
-                                Long.parseLong(fields[6]) + Long.parseLong(fields[7]) +
-                                Long.parseLong(fields[8]);
+                    Long.parseLong(fields[3]) + Long.parseLong(fields[5]) +
+                    Long.parseLong(fields[6]) + Long.parseLong(fields[7]) +
+                    Long.parseLong(fields[8]);
 
             //calculate cpu usage
             double cpuUsage =  (100 * ( (double)(cpuMeasure2 - cpuMeasure1) /
-                                ((cpuMeasure2 + idle2) - (cpuMeasure1 + idle1)) ));
+                    ((cpuMeasure2 + idle2) - (cpuMeasure1 + idle1)) ));
 
             return (int)cpuUsage;
 

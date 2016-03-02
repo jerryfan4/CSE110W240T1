@@ -2,6 +2,7 @@ package com.cse110w240t1.systemmoniter;
 
 import android.content.Context;
 import android.os.Handler;
+import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,18 +34,7 @@ class CustomAdapter extends ArrayAdapter<String> {
         image.setImageResource(R.drawable.default_icon);
         content.setText("Loading...");
 
-        if(cellName == "Make and Model"){
-            image.setImageResource(R.drawable.cpu_icon);
-        }
-        if(cellName == "Clock Speed"){
-            image.setImageResource(R.drawable.speed_icon);
-        }
-        if(cellName == "CPU Make and Model"){
-            image.setImageResource(R.drawable.cpu_icon);
-        }
-        if(cellName == "GPU Make and Model"){
-            image.setImageResource(R.drawable.gpu_icon);
-        }
+        //System Info
         if (cellName == "Temperature") {
             content.setText(BatteryFragment._TEMPERATURE);
             image.setImageResource(R.drawable.temperature_icon);
@@ -78,6 +68,7 @@ class CustomAdapter extends ArrayAdapter<String> {
             image.setImageResource(R.drawable.imei_icon);
         }
 
+        //Battery Info
         if (cellName == "Percentage") {
             content.setText(BatteryFragment._PERCENTAGE);
             image.setImageResource(R.drawable.percentage_icon);
@@ -95,6 +86,7 @@ class CustomAdapter extends ArrayAdapter<String> {
             image.setImageResource(R.drawable.technology_icon);
         }
 
+        //RAM Info
         if (cellName == "Total Memory") {
             content.setText(RAMFragment._TOTAL_MEMORY);
             image.setImageResource(R.drawable.memory_icon);
@@ -107,46 +99,83 @@ class CustomAdapter extends ArrayAdapter<String> {
             content.setText(RAMFragment._USING_MEMORY);
             image.setImageResource(R.drawable.using_memory_icon);
         }
+
+        //CPU Info
         if (cellName == "CPU Architecture") {
             content.setText(CPUFragment._CPU_ARCHITECTURE);
             image.setImageResource(R.drawable.cpu_icon);
         }
-        if (cellName == "GPU Architecture") {
-            content.setText(CPUFragment._CPU_ARCHITECTURE);
-            image.setImageResource(R.drawable.gpu_icon);
+
+        if (cellName == "CPU Make") {
+            content.setText(CPUFragment._CPU_MAKE);
+            image.setImageResource(R.drawable.cpu_icon);
+        }
+
+        if (cellName == "CPU Model") {
+            content.setText(CPUFragment._CPU_MODEL);
+            image.setImageResource(R.drawable.cpu_icon);
+        }
+
+        if (cellName == "CPU Clock Speed") {
+            content.setText(CPUFragment._CPU_CLOCK_SPEED);
+            image.setImageResource(R.drawable.cpu_icon);
         }
 
         if (cellName == "CPU Load") {
-            final Handler CPUUpdater = new Handler();
-            final int delay = 750;
-            /*
-            CPUUpdater.postDelayed(new Runnable() {
-                @Override
+            new Thread(new Runnable() {
                 public void run() {
-                    content.setText(CPUFragment._CPU_USAGE);
+                    Looper.prepare();
 
-                    CPUUpdater.postDelayed(this, delay);
+                    final Handler CPUUpdater = new Handler(Looper.getMainLooper());
+                    final int delay = 750;
+
+                    CPUUpdater.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            content.setText(CPUFragment._CPU_USAGE);
+
+                            CPUUpdater.postDelayed(this, delay);
+                        }
+                    }, delay);
+
+                    Looper.loop();
                 }
-            }, delay);
-            */
-            image.setImageResource(R.drawable.load_icon);
+            }).start();
+
+            image.setImageResource(R.drawable.cpu_icon);
         }
 
+
+        //GPU Info
         if (cellName == "GPU Load") {
-            final Handler GPUUpdater = new Handler();
-            final int delay = 750;
-            /*
-            GPUUpdater.postDelayed(new Runnable() {
+            Thread GPUThread = new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    content.setText(GPUFragment._GPU_LIVE_USAGE);
+                    Looper.prepare();
 
-                    GPUUpdater.postDelayed(this, delay);
+                    final Handler GPUUpdater = new Handler(Looper.getMainLooper());
+                    final int delay = 750;
+
+                    GPUUpdater.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            content.setText(GPUFragment._GPU_LIVE_USAGE);
+
+                            GPUUpdater.postDelayed(this, delay);
+                        }
+                    }, delay);
+
+                    Looper.loop();
                 }
-            }, delay);
-            */
+            });
+            GPUThread.start();
 
-            image.setImageResource(R.drawable.load_icon);
+            image.setImageResource(R.drawable.gpu_icon);
+        }
+
+        if (cellName == "Architecture") {
+            content.setText(GPUFragment.GLVender);
+            image.setImageResource(R.drawable.gpu_icon);
         }
         
         return customView;
