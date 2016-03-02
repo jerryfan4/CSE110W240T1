@@ -40,8 +40,11 @@ public class CPUFragment extends ListFragment {
         ArrayAdapter<String> adapter = new CustomAdapter(getActivity(), information);
         setListAdapter(adapter);
 
-        _CPU_ARCHITECTURE = Build.SUPPORTED_ABIS[0];
-
+        if (Build.VERSION.SDK_INT >= 21)
+            _CPU_ARCHITECTURE = Build.SUPPORTED_ABIS[0];
+        else
+            _CPU_ARCHITECTURE = "Unavailable at the moment";
+        /*
         _CPU_USAGE = getCpuUsage() + " %";
 
         final Handler CPUUpdater = new Handler();
@@ -55,7 +58,7 @@ public class CPUFragment extends ListFragment {
                 CPUUpdater.postDelayed(this, delay);
             }
         }, delay);
-
+        */
         return rootView;
     }
 

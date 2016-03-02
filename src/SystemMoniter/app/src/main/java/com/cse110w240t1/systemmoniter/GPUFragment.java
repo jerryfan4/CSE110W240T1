@@ -42,6 +42,7 @@ public class GPUFragment extends ListFragment {
         ArrayAdapter<String> adapter = new CustomAdapter(getActivity(), information);
         setListAdapter(adapter);
 
+        /*
         final Handler GPUUpdater = new Handler();
         final int delay = 750;
 
@@ -62,7 +63,7 @@ public class GPUFragment extends ListFragment {
                 GPUUpdater.postDelayed(this, delay);
             }
         }, delay);
-
+        */
         return rootView;
     }
 }
