@@ -30,7 +30,7 @@ public class GPUFragment extends ListFragment {
     public static String GLVender;
     public static String GLVersion;
     private GLSurfaceView mGlSurfaceView;
-    public static Map<Sring, String>_Make;
+    public static Map<String, String>_Make;
     public static Map<String, String>_Model;
 
     public GPUFragement() {
@@ -136,7 +136,7 @@ public class GPUFragment extends ListFragment {
         _Make.put("US991","Qualcomm"); _Model.put("US991","Adrneo 418");
         _Make.put("LS996","Qualcomm"); _Model.put("LS996","Adrneo 430");
         _Make.put("H950","Qualcomm"); _Model.put("H950","Adrneo 430");
-        
+
     }
 
     private GLSurfaceView.Renderer mGlRenderer = new GLSurfaceView.Renderer() {
