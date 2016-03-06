@@ -12,6 +12,8 @@ import android.widget.ArrayAdapter;
 
 import java.io.IOException;
 import java.io.RandomAccessFile;
+import java.util.HashMap;
+import java.util.Map;
 
 
 /**
@@ -24,8 +26,133 @@ public class CPUFragment extends ListFragment {
     public static String _CPU_MAKE;
     public static String _CPU_MODEL;
     public static String _CPU_CLOCK_SPEED;
+    public static Map<String, String> _MAKE;
+    public static Map<String, String> _MODEL;
+  
 
     public CPUFragment() {
+        _MAKE = new HashMap<String, String>();
+        _MODEL = new HashMap<String, String>();
+        configureMakeNModel();
+    }
+
+    private void configureMakeNModel() {
+        _MAKE.put("SM-G920F", "Samsung"); _MODEL.put("SM-G920F", "Exynos 7420 Octa");
+        _MAKE.put("SM-G920I", "Samsung"); _MODEL.put("SM-G920I", "Exynos 7420 Octa");
+        _MAKE.put("SM-G920T", "Samsung"); _MODEL.put("SM-G920T", "Exynos 7420 Octa");
+        _MAKE.put("SM-G920P", "Samsung"); _MODEL.put("SM-G920P", "Exynos 7420 Octa");
+        _MAKE.put("SM-G925F", "Samsung"); _MODEL.put("SM-G925F", "Exynos 7420 Octa");
+        _MAKE.put("SM-G925I", "Samsung"); _MODEL.put("SM-G925I", "Exynos 7420 Octa");
+        _MAKE.put("SM-G920A", "Samsung"); _MODEL.put("SM-G920A", "Exynos 7420 Octa");
+        _MAKE.put("SM-G9200", "Samsung"); _MODEL.put("SM-G9200", "Exynos 7420 Octa");
+        _MAKE.put("SM-G9208", "Samsung"); _MODEL.put("SM-G9208", "Exynos 7420 Octa");
+        _MAKE.put("SM-G9208/SS", "Samsung"); _MODEL.put("SM-G9208/SS", "Exynos 7420 Octa");
+        _MAKE.put("SM-G9209", "Samsung"); _MODEL.put("SM-G9209", "Exynos 7420 Octa");
+        _MAKE.put("SM-G920S", "Samsung"); _MODEL.put("SM-G920S", "Exynos 7420 Octa");
+        _MAKE.put("SM-G925A", "Samsung"); _MODEL.put("SM-G925A", "Exynos 7420 Octa");
+        _MAKE.put("SM-G925T", "Samsung"); _MODEL.put("SM-G925T", "Exynos 7420 Octa");
+        _MAKE.put("SM-G9250", "Samsung"); _MODEL.put("SM-G9250", "Exynos 7420 Octa");
+        _MAKE.put("SM-G920V", "Samsung"); _MODEL.put("SM-G920V", "Exynos 7420 Octa");
+
+        _MAKE.put("SM-N920T", "Samsung"); _MODEL.put("SM-N920T", "Exynos 7420 Octa");
+        _MAKE.put("SM-N920A", "Samsung"); _MODEL.put("SM-N920A", "Exynos 7420 Octa");
+        _MAKE.put("SM-N920P", "Samsung"); _MODEL.put("SM-N920P", "Exynos 7420 Octa");
+        _MAKE.put("SM-N920R", "Samsung"); _MODEL.put("SM-N920R", "Exynos 7420 Octa");
+        _MAKE.put("SM-N920V", "Samsung"); _MODEL.put("SM-N920V", "Exynos 7420 Octa");
+        _MAKE.put("SM-N9200", "Samsung"); _MODEL.put("SM-N9200", "Exynos 7420 Octa");
+
+        _MAKE.put("SM-A9000", "Qualcomm"); _MODEL.put("SM-A9000", "MSM8976");
+        
+        _MAKE.put("SM-G915A", "Qualcomm"); _MODEL.put("SM-G915A", "APQ8084");
+        _MAKE.put("SM-G915T", "Qualcomm"); _MODEL.put("SM-G915T", "APQ8084");
+        _MAKE.put("SM-G915R", "Qualcomm"); _MODEL.put("SM-G915R", "APQ8084");
+        _MAKE.put("SM-G915G", "Qualcomm"); _MODEL.put("SM-G915G", "APQ8084");
+        _MAKE.put("SM-G915S", "Qualcomm"); _MODEL.put("SM-G915S", "APQ8084");
+
+        _MAKE.put("SM-N910T", "Qualcomm"); _MODEL.put("SM-N910T", "APQ8084");
+        _MAKE.put("SM-N910A", "Qualcomm"); _MODEL.put("SM-N910A", "APQ8084");
+        _MAKE.put("SM-N910P", "Qualcomm"); _MODEL.put("SM-N910P", "APQ8084");
+        _MAKE.put("SM-N910R", "Qualcomm"); _MODEL.put("SM-N910R", "APQ8084");
+        _MAKE.put("SM-N910V", "Qualcomm"); _MODEL.put("SM-N910V", "APQ8084");
+        _MAKE.put("SM-N910C", "Samsung"); _MODEL.put("SM-N910C", "Exynos 5433");
+
+        _MAKE.put("SM-N900A", "Qualcomm"); _MODEL.put("SM-N910A", "MSM8974");
+        _MAKE.put("SM-N900V", "Qualcomm"); _MODEL.put("SM-N910V", "MSM8974");
+        _MAKE.put("SM-N900T", "Qualcomm"); _MODEL.put("SM-N910T", "MSM8974");
+        _MAKE.put("SM-N900P", "Qualcomm"); _MODEL.put("SM-N910P", "MSM8974");
+        _MAKE.put("SM-N900R", "Qualcomm"); _MODEL.put("SM-N910R", "MSM8974");
+
+        _MAKE.put("SM-N928A", "Samsung"); _MODEL.put("SM-N928A", "Exynos 7420 Octa");
+        _MAKE.put("SM-N928R", "Samsung"); _MODEL.put("SM-N928R", "Exynos 7420 Octa");
+        _MAKE.put("SM-N928T", "Samsung"); _MODEL.put("SM-N928T", "Exynos 7420 Octa");
+        _MAKE.put("SM-N928P", "Samsung"); _MODEL.put("SM-N928P", "Exynos 7420 Octa");
+        _MAKE.put("SM-N928V", "Samsung"); _MODEL.put("SM-N928V", "Exynos 7420 Octa");
+
+        _MAKE.put("ONE A9", "Qualcomm"); _MODEL.put("ONE A9", "MSM8952");
+        _MAKE.put("ONE M9", "Qualcomm"); _MODEL.put("ONE M9", "MSM8994");
+        _MAKE.put("Desire EYE", "Qualcomm"); _MODEL.put("Desire EYE", "MSM8974");
+        _MAKE.put("ONE M8", "Qualcomm"); _MODEL.put("ONE M8", "MSM8974");
+        _MAKE.put("ONE E8", "Qualcomm"); _MODEL.put("ONE E8", "MSM8974");
+
+        _MAKE.put("D6502", "Qualcomm"); _MODEL.put("D6502", "MSM8974");
+        _MAKE.put("D6503", "Qualcomm"); _MODEL.put("D6503", "MSM8974");
+        _MAKE.put("D6543", "Qualcomm"); _MODEL.put("D6543", "MSM8974");
+        _MAKE.put("L50t", "Qualcomm"); _MODEL.put("L50t", "MSM8974");
+        _MAKE.put("L50u", "Qualcomm"); _MODEL.put("L50u", "MSM8974");
+
+        _MAKE.put("D6603", "Qualcomm"); _MODEL.put("D6603", "MSM8974");
+        _MAKE.put("D6653", "Qualcomm"); _MODEL.put("D6653", "MSM8974");
+        _MAKE.put("D6616", "Qualcomm"); _MODEL.put("D6616", "MSM8974");
+        _MAKE.put("D6633", "Qualcomm"); _MODEL.put("D6633", "MSM8974");
+        _MAKE.put("D5803", "Qualcomm"); _MODEL.put("D5803", "MSM8974");
+
+        _MAKE.put("D5833", "Qualcomm"); _MODEL.put("D5833", "MSM8974");
+        _MAKE.put("E6603", "Qualcomm"); _MODEL.put("E6603", "MSM8994");
+        _MAKE.put("E6633", "Qualcomm"); _MODEL.put("E6633", "MSM8994");
+        _MAKE.put("E6653", "Qualcomm"); _MODEL.put("E6653", "MSM8994");
+        _MAKE.put("E6683", "Qualcomm"); _MODEL.put("E6682", "MSM8994");
+
+        _MAKE.put("SO-01H", "Qualcomm"); _MODEL.put("SO-01H", "MSM8974");
+        _MAKE.put("SOV32", "Qualcomm"); _MODEL.put("SOV32", "MSM8994");
+        _MAKE.put("E5803", "Qualcomm"); _MODEL.put("E5803", "MSM8994");
+        _MAKE.put("E5823", "Qualcomm"); _MODEL.put("E5823", "MSM8994");
+        _MAKE.put("SO-02H", "Qualcomm"); _MODEL.put("SO-02H", "MSM8994");
+
+        _MAKE.put("E6833", "Qualcomm"); _MODEL.put("E6833", "MSM8994");
+        _MAKE.put("E6853", "Qualcomm"); _MODEL.put("E6853", "MSM8994");
+        _MAKE.put("E6883", "Qualcomm"); _MODEL.put("E6883", "MSM8994");
+        _MAKE.put("SO-03H", "Qualcomm"); _MODEL.put("SO-03H", "MSM8994");
+        _MAKE.put("E6533", "Qualcomm"); _MODEL.put("E6533", "MSM8994");
+
+        _MAKE.put("SO-03G", "Qualcomm"); _MODEL.put("SO-03G", "MSM8994");
+        _MAKE.put("XT1103", "Qualcomm"); _MODEL.put("XT1103", "APQ8084");
+        _MAKE.put("XT1100", "Qualcomm"); _MODEL.put("XT1100", "APQ8084");
+        _MAKE.put("D820", "Qualcomm"); _MODEL.put("D820", "MSM8974");
+
+        _MAKE.put("D821", "Qualcomm"); _MODEL.put("D821", "MSM8974");
+        _MAKE.put("H790", "Qualcomm"); _MODEL.put("H790", "MSM8992");
+        _MAKE.put("H791", "Qualcomm"); _MODEL.put("H791", "MSM8992");
+        _MAKE.put("H1511", "Qualcomm"); _MODEL.put("H1511", "MSM8994");
+        _MAKE.put("H1512", "Qualcomm"); _MODEL.put("H1512", "MSM8994");
+
+        _MAKE.put("XT1575", "Qualcomm"); _MODEL.put("XT1575", "MSM8992");
+        _MAKE.put("XT1053", "Qualcomm"); _MODEL.put("XT1053", "MSM8974");
+        _MAKE.put("D850", "Qualcomm"); _MODEL.put("D850", "MSM8974");
+        _MAKE.put("D851", "Qualcomm"); _MODEL.put("D851", "MSM8974");
+        _MAKE.put("VS985", "Qualcomm"); _MODEL.put("VS985", "MSM8974");
+
+        _MAKE.put("D855", "Qualcomm"); _MODEL.put("D855", "MSM8974");
+        _MAKE.put("H815", "Qualcomm"); _MODEL.put("H815", "MSM8974");
+        _MAKE.put("H811", "Qualcomm"); _MODEL.put("H811", "MSM8992");
+        _MAKE.put("H810", "Qualcomm"); _MODEL.put("H810", "MSM8992");
+        _MAKE.put("D852", "Qualcomm"); _MODEL.put("D852", "MSM8992");
+
+        _MAKE.put("F500L", "Qualcomm"); _MODEL.put("F500L", "MSM8992");
+        _MAKE.put("VS986", "Qualcomm"); _MODEL.put("VS986", "MSM8992");
+        _MAKE.put("LS991", "Qualcomm"); _MODEL.put("LS991", "MSM8992");
+        _MAKE.put("US991", "Qualcomm"); _MODEL.put("US991", "MSM8992");
+        _MAKE.put("LS996", "Qualcomm"); _MODEL.put("LS996", "MSM8994");
+        _MAKE.put("H950", "Qualcomm"); _MODEL.put("H950", "MSM8994");
     }
 
     public static CPUFragment newInstance(int sectionNumber) {
@@ -45,8 +172,16 @@ public class CPUFragment extends ListFragment {
         setListAdapter(adapter);
 
         _CPU_CLOCK_SPEED = "400MHz - 2.10 GHz";
-        _CPU_MAKE = "Samsung Exynos Octa 7420";
-        _CPU_MODEL = "Cortex A-57, Cortex A-53";
+        if (_MAKE.get(Build.MODEL) != null) {
+            _CPU_MAKE = _MAKE.get(Build.MODEL);
+        } else {
+            _CPU_MAKE = "Unavailable at the moment";
+        }
+        if (_MODEL.get(Build.MODEL) != null) {
+            _CPU_MODEL = _MODEL.get(Build.MODEL);
+        } else {
+            _CPU_MODEL = "Unavailable at the moment";
+        }
 
         if ( Build.VERSION.SDK_INT >= 21 ) {
             _CPU_ARCHITECTURE = Build.SUPPORTED_ABIS[0];
