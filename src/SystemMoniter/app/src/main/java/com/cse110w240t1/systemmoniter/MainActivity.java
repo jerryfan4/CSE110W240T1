@@ -206,7 +206,7 @@ public class MainActivity extends AppCompatActivity {
         BroadcastReceiver batteryLevel = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
-
+                context.unregisterReceiver(this);
                 int currentLevel = intent.getIntExtra(BatteryManager.EXTRA_LEVEL, -1);
                 int scale = intent.getIntExtra(BatteryManager.EXTRA_SCALE, -1);
                 int level = -1;
