@@ -210,11 +210,15 @@ public class CPUFragment extends ListFragment {
             }
         }
 
-        if(b.exists() && !b.isDirectory()) {
-            getCpuClock2(a, b);
+        if ( !a.exists() ) {
+            _CPU_CLOCK_SPEED = "Unavailable";
         }
         else {
-            getCpuClock1(a);
+            if (b.exists() && !b.isDirectory()) {
+                getCpuClock2(a, b);
+            } else {
+                getCpuClock1(a);
+            }
         }
 
 
