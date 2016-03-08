@@ -254,7 +254,7 @@ public class CPUFragment extends ListFragment {
                 CPUUpdater.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        _CPU_USAGE = getCpuUsage() + " %";
+                        _CPU_USAGE = getCpuUsage() + "%";
 
                         CPUUpdater.postDelayed(this, delay);
                     }
