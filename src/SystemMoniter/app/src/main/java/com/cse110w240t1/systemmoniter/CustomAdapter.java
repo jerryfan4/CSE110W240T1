@@ -15,9 +15,12 @@ import android.widget.TextView;
  */
 
 class CustomAdapter extends ArrayAdapter<String> {
+    private Context mContext;
 
     public CustomAdapter(Context context, String[] information) {
         super(context, R.layout.custom_row, information);
+
+        mContext = context;
     }
 
     @Override
@@ -35,10 +38,6 @@ class CustomAdapter extends ArrayAdapter<String> {
         content.setText("Loading...");
 
         //System Info
-        if (cellName == "Temperature") {
-            content.setText(BatteryFragment._TEMPERATURE);
-            image.setImageResource(R.drawable.temperature_icon);
-        }
         if (cellName == "OS Version") {
             content.setText(SystemInfoFragment._OS_VERSION);
             image.setImageResource(R.drawable.os_icon);
@@ -116,19 +115,9 @@ class CustomAdapter extends ArrayAdapter<String> {
             image.setImageResource(R.drawable.cpu_icon);
         }
 
-        if (cellName == "GPU Make") {
-            content.setText(GPUFragment._GPU_MAKE);
-            image.setImageResource(R.drawable.gpu_icon);
-        }
-
-        if (cellName == "GPU Model") {
-            content.setText(GPUFragment._GPU_MODEL);
-            image.setImageResource(R.drawable.gpu_icon);
-        }
-
         if (cellName == "CPU Clock Speed") {
             content.setText(CPUFragment._CPU_CLOCK_SPEED);
-            image.setImageResource(R.drawable.speed_icon);
+            image.setImageResource(R.drawable.cpu_icon);
         }
 
         if (cellName == "CPU Load") {
@@ -152,7 +141,7 @@ class CustomAdapter extends ArrayAdapter<String> {
                 }
             }).start();
 
-            image.setImageResource(R.drawable.load_icon);
+            image.setImageResource(R.drawable.cpu_icon);
         }
 
 
@@ -180,17 +169,29 @@ class CustomAdapter extends ArrayAdapter<String> {
             });
             GPUThread.start();
 
-            image.setImageResource(R.drawable.load_icon);
+            image.setImageResource(R.drawable.gpu_icon);
         }
+
+        if (cellName == "GPU Make") {
+            content.setText(MainActivity.VENDOR);
+            image.setImageResource(R.drawable.gpu_icon);
+        }
+
+        if (cellName == "OpenGL ES Version") {
+            content.setText(MainActivity.VERSION);
+            image.setImageResource(R.drawable.gpu_icon);
+        }
+
+        if (cellName == "GPU Model") {
+            content.setText(MainActivity.RENDERER);
+            image.setImageResource(R.drawable.gpu_icon);
+        }
+
         if (cellName == "GPU Clock Speed") {
-            content.setText(GPUFragment.GLVender);
+            content.setText(GPUFragment._GPU_CLOCK_SPEED);
             image.setImageResource(R.drawable.gpu_icon);
         }
-        if (cellName == "GL Version") {
-            content.setText(GPUFragment.GLVender);
-            image.setImageResource(R.drawable.gpu_icon);
-        }
-        
+
         return customView;
     }
 }

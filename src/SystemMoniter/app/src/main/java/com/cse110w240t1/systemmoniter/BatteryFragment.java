@@ -1,10 +1,5 @@
 package com.cse110w240t1.systemmoniter;
 
-import android.content.BroadcastReceiver;
-import android.content.Context;
-import android.content.Intent;
-import android.content.IntentFilter;
-import android.os.BatteryManager;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
@@ -40,17 +35,17 @@ public class BatteryFragment extends ListFragment {
         ArrayAdapter<String> adapter = new CustomAdapter(getActivity(), information);
         setListAdapter(adapter);
 
-        getBatteryInfo();
+        //getBatteryInfo();
 
         return rootView;
     }
 
-    private void getBatteryInfo() {
+    /*private void getBatteryInfo() {
 
         BroadcastReceiver batteryLevel = new BroadcastReceiver() {
-
+            @Override
             public void onReceive(Context context, Intent intent) {
-                context.unregisterReceiver(this);
+
                 int currentLevel = intent.getIntExtra(BatteryManager.EXTRA_LEVEL, -1);
                 int scale = intent.getIntExtra(BatteryManager.EXTRA_SCALE, -1);
                 int level = -1;
@@ -60,16 +55,15 @@ public class BatteryFragment extends ListFragment {
                 int temperature = intent.getIntExtra(BatteryManager.EXTRA_TEMPERATURE, -1);
                 int voltage = intent.getIntExtra(BatteryManager.EXTRA_VOLTAGE, -1);
                 String technology = intent.getExtras().getString(BatteryManager.EXTRA_TECHNOLOGY);
+
                 _TEMPERATURE = temperature/10 + " °C";
                 _VOLTAGE = voltage + " mV";
                 _PERCENTAGE = level + "%";
                 _TECHNOLOGY = technology;
-
             }
         };
 
-        IntentFilter batteryLevelFilter = new IntentFilter(
-                Intent.ACTION_BATTERY_CHANGED);
+        IntentFilter batteryLevelFilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
         getActivity().registerReceiver(batteryLevel, batteryLevelFilter);
-    }
+    }*/
 }

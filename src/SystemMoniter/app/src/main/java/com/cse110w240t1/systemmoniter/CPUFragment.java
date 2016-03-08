@@ -10,6 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.util.HashMap;
@@ -20,6 +22,17 @@ import java.util.Map;
  * Created by fanfan on 2/7/16.
  */
 public class CPUFragment extends ListFragment {
+
+    private static final String CLOCK_SPEED_1 =
+            "/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_max_freq"; //first core
+    private static final String CLOCK_SPEED_4 =
+            "/sys/devices/system/cpu/cpu3/cpufreq/cpuinfo_max_freq"; //last core for dual duo-core cpus
+    private static final String CLOCK_SPEED_8 =
+            "/sys/devices/system/cpu/cpu7/cpufreq/cpuinfo_max_freq"; //last core for dual quad-core cpus
+    private static final String NUM_OF_CORES = "/sys/devices/system/cpu/kernel_max";
+
+    private static final int QUAD_CORE = 3;
+    private static final int OCTA_CORE = 7;
 
     public static String _CPU_ARCHITECTURE;
     public static String _CPU_USAGE;
@@ -171,7 +184,41 @@ public class CPUFragment extends ListFragment {
         ArrayAdapter<String> adapter = new CustomAdapter(getActivity(), information);
         setListAdapter(adapter);
 
-        _CPU_CLOCK_SPEED = "400MHz - 2.10 GHz";
+        //get CPU Clock Speed
+        File a = new File(CLOCK_SPEED_1);
+        File b = new File(CLOCK_SPEED_1);
+        File c = new File(NUM_OF_CORES);
+
+        int numCores = 0;
+
+        try {
+            RandomAccessFile reader = new RandomAccessFile(c, "r");
+            numCores = Integer.parseInt(reader.readLine());
+            reader.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        if ( numCores == QUAD_CORE ) {
+            b = new File(CLOCK_SPEED_4);
+        }
+        else {
+            if ( numCores == OCTA_CORE ) {
+                b = new File(CLOCK_SPEED_8);
+            }
+        }
+
+        if(b.exists() && !b.isDirectory()) {
+            getCpuClock2(a, b);
+        }
+        else {
+            getCpuClock1(a);
+        }
+
+
+        //get CPU make and model
         if (_MAKE.get(Build.MODEL) != null) {
             _CPU_MAKE = _MAKE.get(Build.MODEL);
         } else {
@@ -191,6 +238,8 @@ public class CPUFragment extends ListFragment {
             _CPU_ARCHITECTURE = Build.CPU_ABI;
         }
 
+
+        //get CPU live usage
         new Thread(new Runnable() {
             public void run() {
                 Looper.prepare();
@@ -214,6 +263,59 @@ public class CPUFragment extends ListFragment {
         return rootView;
     }
 
+
+    //method to help get cpu clock speed for single cpu SoC
+    private void getCpuClock1( final File a ) {
+        try {
+            RandomAccessFile reader = new RandomAccessFile(a, "r");
+                double clock_speed = Long.parseLong(reader.readLine());
+                clock_speed /= 1000000; //convert Hz to GHz
+                _CPU_CLOCK_SPEED = clock_speed + " GHz";
+            reader.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    //method to help get cpu clock speed for dual cpu SoC
+    private void getCpuClock2( final File a, final File b ) {
+
+        double clock_speed1 = 0; //clock speed for 1st cpu
+        double clock_speed2 = 0; //clock speed for 2nd cpu
+
+        //for first cpu
+        try {
+            RandomAccessFile reader = new RandomAccessFile(a, "r");
+            clock_speed1 = Double.parseDouble(reader.readLine());
+            clock_speed1 /= 1000000; //convert Hz to GHz
+            _CPU_CLOCK_SPEED = clock_speed1 + " GHz";
+            reader.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        //for second cpu
+        try {
+            RandomAccessFile reader = new RandomAccessFile(b, "r");
+            clock_speed2 = Double.parseDouble(reader.readLine());
+            clock_speed2 /= 1000000; //convert Hz to GHz
+            if ( clock_speed2 != clock_speed1) {
+                _CPU_CLOCK_SPEED += ", " + clock_speed2 + " GHz";
+                _CPU_CLOCK_SPEED += " (dual set of CPUs)";
+            }
+            reader.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    //method to help get cpu live usage
     private int getCpuUsage() {
         try {
             RandomAccessFile reader = new RandomAccessFile("/proc/stat", "r");
@@ -251,6 +353,8 @@ public class CPUFragment extends ListFragment {
 
             return (int)cpuUsage;
 
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
         } catch (IOException ex) {
             ex.printStackTrace();
         }
