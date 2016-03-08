@@ -2,6 +2,7 @@ package com.cse110w240t1.systemmoniter;
 
 import android.opengl.GLES20;
 import android.opengl.GLSurfaceView;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -15,6 +16,8 @@ import android.widget.ArrayAdapter;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.RandomAccessFile;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
@@ -29,18 +32,24 @@ public class GPUFragment extends ListFragment {
     public static String GLRenderer;
     public static String GLVender;
     public static String GLVersion;
-    private GLSurfaceView mGlSurfaceView;
-    public static Map<String, String>_Make;
-    public static Map<String, String>_Model;
+    public static String _GPU_MAKE;
+    public static String _GPU_MODEL;
 
-    public GPUFragement() {
-        _Make = new HashMap<String, String>();
-        _Model= new HashMap<String,String>();
-        configureMake();
-        configureModel();
+    public GLSurfaceView getmGlSurfaceView() {
+        return mGlSurfaceView;
     }
 
-    private void configureMake {
+    private GLSurfaceView mGlSurfaceView;
+    public static Map<String, String> _Make;
+    public static Map<String, String>_Model;
+
+    public GPUFragment() {
+        _Make = new HashMap<String, String>();
+        _Model= new HashMap<String,String>();
+        configureMakeNModel();
+    }
+
+    private void configureMakeNModel() {
         _Make.put("SM-G920F","ARM"); _Model.put("SM-G920F","Mali-T760 MP8");
         _Make.put("SM-G920I","ARM"); _Model.put("SM-G920I","Mali-T760 MP8");
         _Make.put("SM-G920T","ARM"); _Model.put("SM-G920T","Mali-T760 MP8");
@@ -161,9 +170,6 @@ public class GPUFragment extends ListFragment {
 
     };
 
-    public GPUFragment() {
-    }
-
     public static GPUFragment newInstance(int sectionNumber) {
         GPUFragment fragment = new GPUFragment();
         Bundle args = new Bundle();
@@ -183,6 +189,17 @@ public class GPUFragment extends ListFragment {
         mGlSurfaceView = new GLSurfaceView(getActivity());
         mGlSurfaceView.setRenderer(mGlRenderer);
         //getActivity().setContentView(mGlSurfaceView);
+
+        if (_Make.get(Build.MODEL) != null) {
+            _GPU_MAKE = _Make.get(Build.MODEL);
+        } else {
+            _GPU_MAKE = "Unavailable at the moment";
+        }
+        if (_Model.get(Build.MODEL) != null) {
+            _GPU_MODEL = _Model.get(Build.MODEL);
+        } else {
+            _GPU_MODEL = "Unavailable at the moment";
+        }
 
         new Thread(new Runnable() {
             public void run() {

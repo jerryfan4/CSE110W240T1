@@ -116,6 +116,16 @@ class CustomAdapter extends ArrayAdapter<String> {
             image.setImageResource(R.drawable.cpu_icon);
         }
 
+        if (cellName == "GPU Make") {
+            content.setText(GPUFragment._GPU_MAKE);
+            image.setImageResource(R.drawable.gpu_icon);
+        }
+
+        if (cellName == "GPU Model") {
+            content.setText(GPUFragment._GPU_MODEL);
+            image.setImageResource(R.drawable.gpu_icon);
+        }
+
         if (cellName == "CPU Clock Speed") {
             content.setText(CPUFragment._CPU_CLOCK_SPEED);
             image.setImageResource(R.drawable.speed_icon);
