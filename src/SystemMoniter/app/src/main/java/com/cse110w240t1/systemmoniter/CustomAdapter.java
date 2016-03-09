@@ -117,7 +117,7 @@ class CustomAdapter extends ArrayAdapter<String> {
 
         if (cellName == "CPU Clock Speed") {
             content.setText(CPUFragment._CPU_CLOCK_SPEED);
-            image.setImageResource(R.drawable.speed_icon);
+            image.setImageResource(R.drawable.cpu_icon);
         }
 
         if (cellName == "CPU Load") {
@@ -141,7 +141,7 @@ class CustomAdapter extends ArrayAdapter<String> {
                 }
             }).start();
 
-            image.setImageResource(R.drawable.load_icon);
+            image.setImageResource(R.drawable.cpu_icon);
         }
 
 
@@ -169,7 +169,7 @@ class CustomAdapter extends ArrayAdapter<String> {
             });
             GPUThread.start();
 
-            image.setImageResource(R.drawable.load_icon);
+            image.setImageResource(R.drawable.gpu_icon);
         }
 
         if (cellName == "GPU Make") {
@@ -189,7 +189,7 @@ class CustomAdapter extends ArrayAdapter<String> {
 
         if (cellName == "GPU Clock Speed") {
             content.setText(GPUFragment._GPU_CLOCK_SPEED);
-            image.setImageResource(R.drawable.speed_icon);
+            image.setImageResource(R.drawable.gpu_icon);
         }
 
         return customView;
