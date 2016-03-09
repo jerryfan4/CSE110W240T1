@@ -13,10 +13,14 @@ package com.cse110w240t1.systemmoniter;
         import org.junit.Test;
         import org.junit.runner.RunWith;
 
+        import java.util.regex.Matcher;
+
+        import static android.support.test.espresso.Espresso.onData;
         import static android.support.test.espresso.Espresso.onView;
         import static android.support.test.espresso.action.ViewActions.click;
         import static android.support.test.espresso.action.ViewActions.closeSoftKeyboard;
         import static android.support.test.espresso.action.ViewActions.swipeLeft;
+        import static android.support.test.espresso.action.ViewActions.swipeRight;
         import static android.support.test.espresso.action.ViewActions.typeText;
         import static android.support.test.espresso.assertion.ViewAssertions.matches;
         import static android.support.test.espresso.matcher.ViewMatchers.isCompletelyDisplayed;
@@ -36,11 +40,28 @@ public class EspressoTest {
 
     @Test
     /*public void TestToolBar(){
-        onView(withId(R.id.tabs)).perform(swipeLeft());
+        onDat(withId(R.id.)).perform(swipeLeft());
     }*/
-    public void TestGPUShowing(){
+
+    public void SwipeGPUShowing(){
+        onView(withId(R.id.container)).perform(swipeLeft());
+        // onView(withId(R.id.containerABC)).check(matches(withText("OpenGL ES Version")));
+    }
+    public void TestGPUVersion() {
+        onView(withId(R.id.container)).check(matches(withText("OpenGL ES version")));
+    }
+
+    public void TestGPUMake() {
+        onView(withId(R.id.container)).check(matches(withText("GPU Make")));
+    }
+
+    public void ClickOnSystemInfo() {
+        onView(withText("SYSTEM INFO")).perform(click());
+        onView(withId(R.id.container)).check(matches(withText("OS Version")));
+    }
+
+    public void ClickOnGPU() {
         onView(withText("GPU")).perform(click());
-        onView(withId(R.id.container)).check(matches(withText("OpenGL ES Version")));
     }
 
     public void TestBattery(){
@@ -51,6 +72,11 @@ public class EspressoTest {
     public void TestRam(){
         onView(withId(R.id.container)).perform(swipeLeft());
         onView(withId(R.id.container)).check(matches(withText("Total Memory")));
+    }
+
+    public void TestGraphExist(){
+        onView(withId(R.id.container)).perform(swipeLeft());
+        onView(withId(R.id.container)).check(matches(withId(R.id.graph)));
     }
 
 }
