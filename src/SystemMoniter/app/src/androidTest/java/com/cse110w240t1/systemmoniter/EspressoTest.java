@@ -19,6 +19,9 @@ package com.cse110w240t1.systemmoniter;
         import static android.support.test.espresso.action.ViewActions.swipeLeft;
         import static android.support.test.espresso.action.ViewActions.typeText;
         import static android.support.test.espresso.assertion.ViewAssertions.matches;
+        import static android.support.test.espresso.matcher.ViewMatchers.isCompletelyDisplayed;
+        import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
+        import static android.support.test.espresso.matcher.ViewMatchers.withClassName;
         import static android.support.test.espresso.matcher.ViewMatchers.withId;
         import static android.support.test.espresso.matcher.ViewMatchers.withText;
 
@@ -32,9 +35,12 @@ public class EspressoTest {
             MainActivity.class);
 
     @Test
+    /*public void TestToolBar(){
+        onView(withId(R.id.tabs)).perform(swipeLeft());
+    }*/
     public void TestGPUShowing(){
-        onView(withId(R.id.container)).perform(swipeLeft());
-        onView(withId(R.id.container)).check(matches(withText("GL Version")));
+        onView(withText("GPU")).perform(click());
+        onView(withId(R.id.container)).check(matches(withText("OpenGL ES Version")));
     }
 
     public void TestBattery(){
