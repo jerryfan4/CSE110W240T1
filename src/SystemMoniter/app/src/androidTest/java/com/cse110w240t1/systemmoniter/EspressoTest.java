@@ -16,6 +16,7 @@ package com.cse110w240t1.systemmoniter;
         import static android.support.test.espresso.Espresso.onView;
         import static android.support.test.espresso.action.ViewActions.click;
         import static android.support.test.espresso.action.ViewActions.closeSoftKeyboard;
+        import static android.support.test.espresso.action.ViewActions.swipeLeft;
         import static android.support.test.espresso.action.ViewActions.typeText;
         import static android.support.test.espresso.assertion.ViewAssertions.matches;
         import static android.support.test.espresso.matcher.ViewMatchers.withId;
@@ -31,8 +32,19 @@ public class EspressoTest {
             MainActivity.class);
 
     @Test
-    public void TestSwipe(){
+    public void TestGPUShowing(){
+        onView(withId(R.id.container)).perform(swipeLeft());
+        onView(withId(R.id.container)).check(matches(withText("GL Version")));
+    }
 
+    public void TestBattery(){
+        onView(withId(R.id.container)).perform(swipeLeft());
+        onView(withId(R.id.container)).check(matches(withText("Percentage")));
+    }
+
+    public void TestRam(){
+        onView(withId(R.id.container)).perform(swipeLeft());
+        onView(withId(R.id.container)).check(matches(withText("Total Memory")));
     }
 
 }
