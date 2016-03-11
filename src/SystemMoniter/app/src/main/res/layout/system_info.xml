@@ -6,7 +6,7 @@
     android:paddingLeft="16dp"
     android:paddingRight="16dp"
     android:paddingTop="16dp"
-    android:id="@+id/system_info_fragment"
+    android:tag="systeminfofragment"
     tools:context="com.cse110w240t1.systemmoniter.MainActivity$OperatingSystemFragment">
 
     <ListView

@@ -20,6 +20,30 @@ public class RAMFragment extends ListFragment {
     public RAMFragment() {
     }
 
+    public String getTotalMemory() {
+        if (getContext() == null) return "Unavailable at the moment";
+        ActivityManager activityManager = (ActivityManager) getContext().getSystemService(Context.ACTIVITY_SERVICE);
+        ActivityManager.MemoryInfo memoryInfo = new ActivityManager.MemoryInfo();
+        activityManager.getMemoryInfo(memoryInfo);
+        return "" + memoryInfo.totalMem / 1024 / 1024+ " Mb";
+    }
+
+    public String getAvailableMemory() {
+        if (getContext() == null) return "Unavailable at the moment";
+        ActivityManager activityManager = (ActivityManager) getContext().getSystemService(Context.ACTIVITY_SERVICE);
+        ActivityManager.MemoryInfo memoryInfo = new ActivityManager.MemoryInfo();
+        activityManager.getMemoryInfo(memoryInfo);
+        return "" + memoryInfo.availMem / 1024 / 1024 + " Mb";
+    }
+
+    public String getUsingMemory() {
+        if (getContext() == null) return "Unavailable at the moment";
+        ActivityManager activityManager = (ActivityManager) getContext().getSystemService(Context.ACTIVITY_SERVICE);
+        ActivityManager.MemoryInfo memoryInfo = new ActivityManager.MemoryInfo();
+        activityManager.getMemoryInfo(memoryInfo);
+        return "" + (memoryInfo.totalMem / 1024 / 1024 - memoryInfo.availMem / 1024 / 1024) + "Mb";
+    }
+
     public static RAMFragment newInstance(int sectionNumber) {
         RAMFragment fragment = new RAMFragment();
         Bundle args = new Bundle();
@@ -39,9 +63,9 @@ public class RAMFragment extends ListFragment {
         ActivityManager activityManager = (ActivityManager) getContext().getSystemService(Context.ACTIVITY_SERVICE);
         ActivityManager.MemoryInfo memoryInfo = new ActivityManager.MemoryInfo();
         activityManager.getMemoryInfo(memoryInfo);
-        _TOTAL_MEMORY = "" + memoryInfo.totalMem / 1024 / 1024+ " Mb";
-        _AVAILABLE_MEMORY = "" + memoryInfo.availMem / 1024 / 1024 + " Mb";
-        _USING_MEMORY = "" + (memoryInfo.totalMem / 1024 / 1024 - memoryInfo.availMem / 1024 / 1024) + "Mb";
+        _TOTAL_MEMORY = getTotalMemory();
+        _AVAILABLE_MEMORY = getAvailableMemory();
+        _USING_MEMORY = getUsingMemory();
 
         return rootView;
     }

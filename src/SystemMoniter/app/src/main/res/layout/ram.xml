@@ -6,7 +6,7 @@
     android:paddingLeft="16dp"
     android:paddingRight="16dp"
     android:paddingTop="16dp"
-    android:id="@+id/ram_fragment"
+    android:tag="ramfragment"
     tools:context="com.cse110w240t1.systemmoniter.MainActivity$RAMFragment">
 
     <ListView

@@ -36,50 +36,83 @@ public class SystemInfoFragment extends ListFragment {
         return fragment;
     }
 
+    public String getOS_Version(){
+        if (Build.VERSION.RELEASE != null)
+          return Build.VERSION.RELEASE;
+        else
+          return "Unavailable at the moment";
+    }
+
+    public String getSecurity_patch() {
+        if (Build.VERSION.SDK_INT >= 22)
+            return Build.VERSION.SECURITY_PATCH;
+        else
+            return "Unavailable at the moment";
+    }
+
+    public String getPhone_model() {
+        if (Build.MODEL != null)
+            return Build.MODEL;
+        else
+            return "Unavailable at the moment";
+    }
+
+    public String getManufacturer() {
+        if (Build.MANUFACTURER != null)
+            return (Build.MANUFACTURER).toUpperCase();
+        else
+            return "Unavailable at the moment";
+    }
+
+    public String getSIMCard() {
+        if (getContext() == null) return "Unavailable at the moment";
+        TelephonyManager telephonyManager = (TelephonyManager) getContext().getSystemService(Context.TELEPHONY_SERVICE);
+        int simStatus = telephonyManager.getSimState();
+
+        switch (simStatus) {
+            case TelephonyManager.SIM_STATE_ABSENT:
+                return "no SIM card is available in the device";
+            case TelephonyManager.SIM_STATE_NETWORK_LOCKED:
+                return "requires a network PIN to unlock";
+            case TelephonyManager.SIM_STATE_PIN_REQUIRED:
+                return "requires the user's SIM PIN to unlock";
+            case TelephonyManager.SIM_STATE_PUK_REQUIRED:
+                return "requires the user's SIM PUK to unlock";
+            case TelephonyManager.SIM_STATE_READY:
+                return "Ready: " + telephonyManager.getSimSerialNumber();
+            case TelephonyManager.SIM_STATE_UNKNOWN:
+                return "Unknown, Signifies that the SIM is in transition between states";
+            default:
+                return "SIM Card status unavailable at the moment";
+        }
+    }
+
+    public String getSerialNumber() {
+        if (Build.SERIAL != null)
+            return Build.SERIAL;
+        else
+            return "Unavailable at the moment";
+    }
+
+    public String getIMEI() {
+        if (getContext() == null) return "Unavailable at the moment";
+        TelephonyManager telephonyManager = (TelephonyManager) getContext().getSystemService(Context.TELEPHONY_SERVICE);
+        return telephonyManager.getDeviceId();
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.system_info, container, false);
         String[] information = {"OS Version", "Security Patch", "Phone Model", "Manufacturer", "SIM Card Status", "Serial Number", "IMEI"};
 
-        _OS_VERSION = Build.VERSION.RELEASE;
-        if (Build.VERSION.SDK_INT >= 22)
-            _SECURITY_PATCH = Build.VERSION.SECURITY_PATCH;
-        else
-            _SECURITY_PATCH = "Unavailable at the moment";
-
-        _PHONE_MODEL = Build.MODEL;
-        _MANUFACTURER = (Build.MANUFACTURER).toUpperCase();
-        _SERIAL_NUMBER = Build.SERIAL;
-
-        TelephonyManager telephonyManager = (TelephonyManager) getContext().getSystemService(Context.TELEPHONY_SERVICE);
-
-        _IMEI = telephonyManager.getDeviceId();
-
-        int simStatus = telephonyManager.getSimState();
-
-        switch (simStatus) {
-            case TelephonyManager.SIM_STATE_ABSENT:
-                _SIM_CARD = "no SIM card is available in the device";
-                break;
-            case TelephonyManager.SIM_STATE_NETWORK_LOCKED:
-                _SIM_CARD = "requires a network PIN to unlock";
-                break;
-            case TelephonyManager.SIM_STATE_PIN_REQUIRED:
-                _SIM_CARD = "requires the user's SIM PIN to unlock";
-                break;
-            case TelephonyManager.SIM_STATE_PUK_REQUIRED:
-                _SIM_CARD = "requires the user's SIM PUK to unlock";
-                break;
-            case TelephonyManager.SIM_STATE_READY:
-                _SIM_CARD = "Ready: " + telephonyManager.getSimSerialNumber();
-                break;
-            case TelephonyManager.SIM_STATE_UNKNOWN:
-                _SIM_CARD = "Unknown, Signifies that the SIM is in transition between states";
-                break;
-            default:
-                _SIM_CARD = "SIM Card status unavailable at the moment";
-        }
+        _OS_VERSION = getOS_Version();
+        _SECURITY_PATCH = getSecurity_patch();
+        _PHONE_MODEL = getPhone_model();
+        _MANUFACTURER = getManufacturer();
+        _SIM_CARD = getSIMCard();
+        _SERIAL_NUMBER = getSerialNumber();
+        _IMEI = getIMEI();
 
         ArrayAdapter<String> adapter = new CustomAdapter(getActivity(), information);
         setListAdapter(adapter);

@@ -6,7 +6,7 @@
     android:paddingLeft="16dp"
     android:paddingRight="16dp"
     android:paddingTop="16dp"
-    android:id="@+id/gpu_fragment"
+    android:tag="gpufragment"
     tools:context="com.cse110w240t1.systemmoniter.MainActivity$GPUFragment">
 
     <ListView

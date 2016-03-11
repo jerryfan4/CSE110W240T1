@@ -6,7 +6,7 @@
     android:paddingLeft="16dp"
     android:paddingRight="16dp"
     android:paddingTop="16dp"
-    android:id="@+id/cpu_fragment"
+    android:tag="cpufragment"
     tools:context="com.cse110w240t1.systemmoniter.MainActivity$CPUFragment">
 
     <ListView

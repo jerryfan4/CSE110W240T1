@@ -176,6 +176,33 @@ public class CPUFragment extends ListFragment {
         return fragment;
     }
 
+    public String getMake() {
+        if (_MAKE.get(Build.MODEL) != null) {
+            return _MAKE.get(Build.MODEL);
+        } else {
+            return "Unavailable at the moment";
+        }
+    }
+
+    public String getModel() {
+        if (_MODEL.get(Build.MODEL) != null) {
+            return _MODEL.get(Build.MODEL);
+        } else {
+            return  "Unavailable at the moment";
+        }
+    }
+
+    public String getArchitecture() {
+        if ( Build.VERSION.SDK_INT >= 21 ) {
+            return Build.SUPPORTED_ABIS[0];
+        }
+        else
+        {
+            //return Build.CPU_ABI;
+            return "Unavailable at the moment";
+        }
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -223,25 +250,9 @@ public class CPUFragment extends ListFragment {
 
 
         //get CPU make and model
-        if (_MAKE.get(Build.MODEL) != null) {
-            _CPU_MAKE = _MAKE.get(Build.MODEL);
-        } else {
-            _CPU_MAKE = "Unavailable at the moment";
-        }
-        if (_MODEL.get(Build.MODEL) != null) {
-            _CPU_MODEL = _MODEL.get(Build.MODEL);
-        } else {
-            _CPU_MODEL = "Unavailable at the moment";
-        }
-
-        if ( Build.VERSION.SDK_INT >= 21 ) {
-            _CPU_ARCHITECTURE = Build.SUPPORTED_ABIS[0];
-        }
-        else
-        {
-            _CPU_ARCHITECTURE = Build.CPU_ABI;
-        }
-
+        _CPU_MAKE = getMake();
+        _CPU_MODEL = getModel();
+        _CPU_ARCHITECTURE = getArchitecture();
 
         //get CPU live usage
         new Thread(new Runnable() {
