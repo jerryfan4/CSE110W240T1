@@ -33,24 +33,28 @@ public class EspressoTest {
 
     @Test
     public void SwipeCPUShowing() throws InterruptedException {
+        Thread.sleep(500);
         onView(withId(R.id.container)).perform(swipeLeft()).perform(swipeRight());
         onView(ViewMatchers.withTagValue(Matchers.is((Object) "cpufragment"))).check(matches(isEnabled()));
     }
 
     @Test
     public void SwipeGPUShowing() throws InterruptedException {
+        Thread.sleep(500);
         onView(withId(R.id.container)).perform(swipeLeft());
         onView(ViewMatchers.withTagValue(Matchers.is((Object) "gpufragment"))).check(matches(isEnabled()));
     }
 
     @Test
     public void SwipeBatteryShowing() throws InterruptedException {
+        Thread.sleep(500);
         onView(withId(R.id.container)).perform(swipeLeft()).perform(swipeLeft());
         onView(ViewMatchers.withTagValue(Matchers.is((Object) "batteryfragment"))).check(matches(isEnabled()));
     }
 
     @Test
     public void SwipeRAMShowing() throws InterruptedException {
+        Thread.sleep(500);
         onView(withId(R.id.container)).perform(swipeLeft()).perform(swipeLeft())
                 .perform(swipeLeft());
         onView(ViewMatchers.withTagValue(Matchers.is((Object) "ramfragment"))).check(matches(isEnabled()));
@@ -58,6 +62,7 @@ public class EspressoTest {
 
     @Test
     public void SwipeRAMGraphShowing() throws InterruptedException {
+        Thread.sleep(500);
         onView(withId(R.id.container)).perform(swipeLeft())
                 .perform(swipeLeft()).perform(swipeLeft())
                 .perform(swipeLeft());
