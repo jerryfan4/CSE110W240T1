@@ -32,40 +32,32 @@ public class EspressoTest {
             MainActivity.class);
 
     @Test
-    public void SwipeCPUShowing() {
+    public void SwipeCPUShowing() throws InterruptedException {
         onView(withId(R.id.container)).perform(swipeLeft()).perform(swipeRight());
         onView(ViewMatchers.withTagValue(Matchers.is((Object) "cpufragment"))).check(matches(isEnabled()));
     }
 
     @Test
-    public void SwipeGPUShowing() {
+    public void SwipeGPUShowing() throws InterruptedException {
         onView(withId(R.id.container)).perform(swipeLeft());
         onView(ViewMatchers.withTagValue(Matchers.is((Object) "gpufragment"))).check(matches(isEnabled()));
     }
 
     @Test
-    public void SwipeBatteryShowing() {
+    public void SwipeBatteryShowing() throws InterruptedException {
         onView(withId(R.id.container)).perform(swipeLeft()).perform(swipeLeft());
         onView(ViewMatchers.withTagValue(Matchers.is((Object) "batteryfragment"))).check(matches(isEnabled()));
     }
 
     @Test
-    public void SwipeRAMShowing() {
+    public void SwipeRAMShowing() throws InterruptedException {
         onView(withId(R.id.container)).perform(swipeLeft()).perform(swipeLeft())
                 .perform(swipeLeft());
         onView(ViewMatchers.withTagValue(Matchers.is((Object) "ramfragment"))).check(matches(isEnabled()));
     }
 
     @Test
-    public void SwipeRAMGraphFragmentShowing() {
-        onView(withId(R.id.container)).perform(swipeLeft())
-                .perform(swipeLeft()).perform(swipeLeft())
-                .perform(swipeLeft());
-        onView(ViewMatchers.withTagValue(Matchers.is((Object) "ramgraphfragment"))).check(matches(isEnabled()));
-    }
-
-    @Test
-    public void SwipeRAMGraphShowing() {
+    public void SwipeRAMGraphShowing() throws InterruptedException {
         onView(withId(R.id.container)).perform(swipeLeft())
                 .perform(swipeLeft()).perform(swipeLeft())
                 .perform(swipeLeft());
